@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapiservice
+  labels:
+    app: demoapiservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoapiservice
+  template:
+    metadata:
+      labels:
+        app: demoapiservice
+    spec:
+      containers:
+      - name: demoapiservice
+        image: demoapiservice:2.0
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: 1
+        env:
+          - name: VISITOR_SERVICE
+            value: demovisitorservice.default
+

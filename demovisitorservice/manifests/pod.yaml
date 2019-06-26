@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demovisitorservice
+  namespace: default
+  labels:
+    app: demovisitorservice
+spec:
+  containers:
+  - name: demovisitorservice
+    image: demovisitorservice:1.0
+    resources:
+      limits:
+        memory: "250Mi"
+      requests:
+        memory: "100Mi"

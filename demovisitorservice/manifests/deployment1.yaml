@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demovisitorservice
+  labels:
+    app: demovisitorservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demovisitorservice
+  template:
+    metadata:
+      labels:
+        app: demovisitorservice
+    spec:
+      containers:
+      - name: demovisitorservice
+        image: demovisitorservice:1.0
+        readinessProbe:
+          tcpSocket:
+            port: 9922
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 9922
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: 1
+
